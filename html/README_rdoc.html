@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: README.rdoc [qiflib]</title>
+
+  <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+  <script src="./js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file">
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./Qiflib.html">Qiflib</a></li>
+        
+          <li><a href="./Qiflib/Category.html">Qiflib::Category</a></li>
+        
+          <li><a href="./Qiflib/Date.html">Qiflib::Date</a></li>
+        
+          <li><a href="./Qiflib/Money.html">Qiflib::Money</a></li>
+        
+          <li><a href="./Qiflib/Transaction.html">Qiflib::Transaction</a></li>
+        
+          <li><a href="./Qiflib/Util.html">Qiflib::Util</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    
+<h2><a href="Qiflib.html">Qiflib</a></h2>
+
+<p>A ruby library for reading and parsing qif files.</p>
+
+<p>Transaction parsing is supported, including address fields, and up to three
+“splits” per transaction.  See the DDL, below, for the list of fields for
+each transaction.</p>
+
+<p>Category-name parsing is also supported.</p>
+
+<p>Also includes DDL generation for importing the parsed categories and 
+transactions into a sqlite3 database.</p>
+
+<h2>Install</h2>
+
+<pre>gem install qiflib</pre>
+
+<h2>Synopsis</h2>
+
+<pre># Parse the transactions from one or more files to csv.
+# Due to a discrepancy between the way iBank and Quicken export
+# qif files, you need to specify either Qiflib::SOURCE_IBANK or
+# Qiflib::SOURCE_QUICKEN as the :source.
+
+input_list = []
+input_list &lt;&lt; { 
+  :owner    =&gt; 'Chris',
+  :filename =&gt; 'data/ibank_cj.qif',
+  :source   =&gt; Qiflib::SOURCE_IBANK }
+input_list &lt;&lt; { 
+  :owner    =&gt; 'Teri',
+  :filename =&gt; 'data/ibank_tj.qif',
+  :source   =&gt; Qiflib::SOURCE_QUICKEN }
+
+csv_lines = Qiflib::Util.transactions_to_csv(input_list) 
+
+... write csv_lines to a file
+
+# Parse the transactions from one or more files to ^-delimited text. 
+# The text lines are suitable for loading to sqlite3.
+
+input_list = []
+input_list &lt;&lt; { 
+  :owner    =&gt; 'Chris',
+  :filename =&gt; 'data/ibank_cj.qif',
+  :source   =&gt; Qiflib::SOURCE_IBANK }
+
+delim_lines = Qiflib::Util.transactions_to_delim(input_list)
+
+... write delim_lines to a file
+
+# Parse the categories from one or more files to csv.
+
+input_list = [ 'data/ibank_cj.qif' ]
+csv_lines = Qiflib::Util.catetory_names_to_csv(input_list)
+
+... write csv_lines to a file 
+
+# Parse the categories from one or more files to ^-delimited text. 
+# The text lines are suitable for loading to sqlite3. 
+
+input_list = [ 'data/ibank_cj.qif' ]
+delim_lines = Qiflib::Util.catetory_names_to_delim(input_list)
+
+... write delim_lines to a file 
+
+# Generate the DDL for a sqlite3 database with categories and transactions tables.
+
+ddl_lines = Qiflib::Util.generate_sqlite_ddl
+
+... write ddl_lines to a file; use it in the following bash-shell script  
+
+# Generate a bash-shell script to load the categories and transactions 
+# delimited files into a sqlite3 database, using the above DDL.
+
+sh_lines = Qiflib::Util.generate_sqlite_load_script 
+
+... write sh_lines to a file; chmod 744; run it.</pre>
+
+<h2>Generated DDL</h2>
+
+<pre># DDL file for sqlite3
+
+drop table if exists transactions;
+drop table if exists categories;
+
+create table transactions(
+  id               integer,
+  acct_owner       varchar(80),
+  acct_name        varchar(80),
+  acct_type        varchar(80),
+  date             varchar(80),
+  amount           real,
+  number           varchar(80),
+  ibank_n          varchar(80),
+  cleared          varchar(80),
+  payee            varchar(80),
+  category         varchar(80),
+  memo             varchar(80),
+  split1_amount    real,
+  split1_category  varchar(80),
+  split1_memo      real,
+  split2_amount    varchar(80),
+  split2_category  varchar(80),
+  split2_memo      varchar(80),
+  split3_amount    real,
+  split3_category  varchar(80),
+  split3_memo      varchar(80),
+  address1         varchar(80),
+  address2         varchar(80),
+  address3         varchar(80),
+  address4         varchar(80),
+  address5         varchar(80),
+  address6         varchar(80),
+  eol_ind          char(1)
+);
+
+create table categories(
+  id       integer,
+  name     varchar(80)
+);
+
+.separator '^'
+
+.import qiflib_transactions.txt transactions
+.import qiflib_categories.txt   categories</pre>
+
+<h2>Generated shell script </h2>
+
+<pre># bash-shell script 
+
+#!/bin/bash
+
+sqlite3 qiflib.db &lt; qiflib.ddl</pre>
+
+<h2>Copyright and License</h2>
+
+<p>Copyright 2013, Chris Joakim &lt;cjoakim@bellsouth.net&gt;.</p>
+
+<p>GNU General Public License (GPLv3) license. See <a
+href="http://www.gnu.org/copyleft/gpl.html">www.gnu.org/copyleft/gpl.html</a></p>
+
+  </div>
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,4 @@
+data/private
+/private
+*.gem
+txt_merged.txt
