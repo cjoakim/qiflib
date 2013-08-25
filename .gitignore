@@ -1,4 +1,7 @@
-data/private
-/private
+coverage/
+data/private/
+log/
+private/
+tmp/
 *.gem
 txt_merged.txt
