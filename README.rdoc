@@ -1,4 +1,4 @@
-== Qiflib
+== Qiflib version 0.3.0
 
 A ruby library for reading and parsing qif files.
 
@@ -8,7 +8,7 @@ list of fields for each transaction.
 
 Category-name parsing is also supported.
 
-Also includes DDL generation for importing the parsed categories and 
+Also includes DDL generation for importing the parsed categories and
 transactions into a sqlite3 database.
 
 == Install
@@ -16,70 +16,70 @@ transactions into a sqlite3 database.
   gem install qiflib
 
 == Synopsis
-  
+
   # Parse the transactions from one or more files to csv.
   # Due to a discrepancy between the way iBank and Quicken export
   # qif files, you need to specify either Qiflib::SOURCE_IBANK or
   # Qiflib::SOURCE_QUICKEN as the :source.
-  
+
   input_list = []
-  input_list << { 
+  input_list << {
     :owner    => 'Chris',
     :filename => 'data/ibank_cj.qif',
     :source   => Qiflib::SOURCE_IBANK }
-  input_list << { 
+  input_list << {
     :owner    => 'Teri',
     :filename => 'data/ibank_tj.qif',
     :source   => Qiflib::SOURCE_QUICKEN }
-    
-  csv_lines = Qiflib::Util.transactions_to_csv(input_list) 
-  
+
+  csv_lines = Qiflib::Util.transactions_to_csv(input_list)
+
   ... write csv_lines to a file
 
 
-  # Parse the transactions from one or more files to ^-delimited text. 
+  # Parse the transactions from one or more files to ^-delimited text.
   # The text lines are suitable for loading to sqlite3.
-  
+
   input_list = []
-  input_list << { 
+  input_list << {
     :owner    => 'Chris',
     :filename => 'data/ibank_cj.qif',
     :source   => Qiflib::SOURCE_IBANK }
-    
+
   delim_lines = Qiflib::Util.transactions_to_delim(input_list)
-   
+
   ... write delim_lines to a file
 
 
   # Parse the categories from one or more files to csv.
-  
+
   input_list = [ 'data/ibank_cj.qif' ]
   csv_lines = Qiflib::Util.catetory_names_to_csv(input_list)
-   
-  ... write csv_lines to a file 
-  
 
-  # Parse the categories from one or more files to ^-delimited text. 
-  # The text lines are suitable for loading to sqlite3. 
-  
+  ... write csv_lines to a file
+
+
+  # Parse the categories from one or more files to ^-delimited text.
+  # The text lines are suitable for loading to sqlite3.
+
   input_list = [ 'data/ibank_cj.qif' ]
   delim_lines = Qiflib::Util.catetory_names_to_delim(input_list)
-   
-  ... write delim_lines to a file 
+
+  ... write delim_lines to a file
 
 
   # Generate the DDL for a sqlite3 database with categories and transactions tables.
-  
+
   ddl_lines = Qiflib::Util.generate_sqlite_ddl
-   
-  ... write ddl_lines to a file; use it in the following bash-shell script  
+
+  ... write ddl_lines to a file; use it in the following bash-shell script
 
 
-  # Generate a bash-shell script to load the categories and transactions 
+  # Generate a bash-shell script to load the categories and transactions
   # delimited files into a sqlite3 database, using the above DDL.
-  
-  sh_lines = Qiflib::Util.generate_sqlite_load_script 
-  
+
+  sh_lines = Qiflib::Util.generate_sqlite_load_script
+
   ... write sh_lines to a file; chmod 744; run it.
 
 
@@ -128,22 +128,22 @@ transactions into a sqlite3 database.
 
   .separator '^'
 
-  .import qiflib_transactions.txt transactions
-  .import qiflib_categories.txt   categories
+  .import private/qiflib_transactions.txt transactions
+  .import private/qiflib_categories.txt   categories
 
 
-== Generated shell script 
+== Generated shell script
 
-  # bash-shell script 
+  # bash-shell script
 
   #!/bin/bash
 
   sqlite3 qiflib.db < qiflib.ddl
-  
-  
+
+
 == Copyright and License
 
 Copyright 2013, Chris Joakim <cjoakim@bellsouth.net>.
 
 GNU General Public License (GPLv3) license.
-See http://www.gnu.org/copyleft/gpl.html 
+See http://www.gnu.org/copyleft/gpl.html

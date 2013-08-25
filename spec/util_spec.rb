@@ -248,9 +248,10 @@ describe "Qiflib::Util" do
     ddl_in = IO.readlines(ddl_filename)
     ddl_in.size.should == 45
 
-    ddl_in[1].strip.should == 'drop table if exists transactions;'
-    ddl_in[2].strip.should == 'drop table if exists categories;'
-    ddl_in[4].strip.should == 'create table transactions('
+    ddl_in[1].strip.should  == 'drop table if exists transactions;'
+    ddl_in[2].strip.should  == 'drop table if exists categories;'
+    ddl_in[4].strip.should  == 'create table transactions('
+    ddl_in[42].strip.should == '.import private/qiflib_transactions.txt transactions'
   end
 
   it "should implement method 'generate_sqlite_load_script'" do
