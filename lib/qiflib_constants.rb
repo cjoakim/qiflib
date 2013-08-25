@@ -1,12 +1,12 @@
 
 # This file, and Qiflib module, define constant values used in this library.
 # This include the lists of field names within the csv and delimited files.
-  
+
 module Qiflib
 
-  VERSION        = '0.2.0'
-  DATE           = '2013-02-23'
-  AUTHOR         = 'Chris Joakim' 
+  VERSION        = '0.3.0'
+  DATE           = '2013-08-25'
+  AUTHOR         = 'Chris Joakim'
   EMAIL          = 'cjoakim@bellsouth.net'
   SOURCE_QUICKEN = 'quicken'
   SOURCE_IBANK   = 'ibank'
@@ -14,7 +14,7 @@ module Qiflib
   def self.csv_category_field_names
     %w( id name )
   end
-  
+
   def self.csv_transaction_field_names
     %w(
       id
@@ -47,6 +47,5 @@ module Qiflib
       eol_ind
     )
   end
-    
+
 end
- 

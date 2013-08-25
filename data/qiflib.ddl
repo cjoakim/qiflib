@@ -40,6 +40,6 @@ create table categories(
 
 .separator '^'
 
-.import qiflib_transactions.txt transactions
-.import qiflib_categories.txt   categories
+.import private/qiflib_transactions.txt transactions
+.import private/qiflib_categories.txt   categories
 

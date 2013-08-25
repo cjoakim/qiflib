@@ -1,4 +1,6 @@
+build/qiflib-0.3.0/
 coverage/
+data/*.db
 data/private/
 log/
 private/

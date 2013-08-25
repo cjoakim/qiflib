@@ -12,13 +12,13 @@ Gem::Specification.new do | s |
   s.email       = Qiflib::EMAIL
   s.homepage    = 'http://rubygems.org/gems/qiflib'
   s.platform    = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.0.0'
   s.has_rdoc    = true
   s.files = FileList[
     'README.rdoc',
     'html/**/*.html',
     'html/**/*.css',
     'lib/**/*.rb'].to_a
-  s.add_development_dependency("rspec", ">= 2.13.0")
+  s.add_development_dependency("rspec", ">= 2.14.1")
   s.licenses = ['GPL-3']
 end

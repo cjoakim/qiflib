@@ -1,276 +1,242 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-  <title>Module: Qiflib</title>
+<title>module Qiflib - qiflib</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
 <body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
-    </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./lib/qiflib_category_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/qiflib_category.rb">lib/qiflib_category.rb</a></li>
-          
-            <li><a href="./lib/qiflib_constants_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/qiflib_constants.rb">lib/qiflib_constants.rb</a></li>
-          
-            <li><a href="./lib/qiflib_date_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/qiflib_date.rb">lib/qiflib_date.rb</a></li>
-          
-            <li><a href="./lib/qiflib_money_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/qiflib_money.rb">lib/qiflib_money.rb</a></li>
-          
-            <li><a href="./lib/qiflib_transaction_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/qiflib_transaction.rb">lib/qiflib_transaction.rb</a></li>
-          
-            <li><a href="./lib/qiflib_util_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/qiflib_util.rb">lib/qiflib_util.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-      
-    </div>
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-    <div id="class-metadata">
-      
 
-      
+  
 
-      
-      <!-- Namespace Contents -->
-      <div id="namespace-list-section" class="section">
-        <h3 class="section-header">Namespace</h3>
-        <ul class="link-list">
-          
-          <li><span class="type">CLASS</span> <a href="Qiflib/Category.html">Qiflib::Category</a></li>
-          
-          <li><span class="type">CLASS</span> <a href="Qiflib/Date.html">Qiflib::Date</a></li>
-          
-          <li><span class="type">CLASS</span> <a href="Qiflib/Money.html">Qiflib::Money</a></li>
-          
-          <li><span class="type">CLASS</span> <a href="Qiflib/Transaction.html">Qiflib::Transaction</a></li>
-          
-          <li><span class="type">CLASS</span> <a href="Qiflib/Util.html">Qiflib::Util</a></li>
-          
-        </ul>
-      </div>
-      
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/qiflib_category.rb
+    <li>lib/qiflib_constants.rb
+    <li>lib/qiflib_date.rb
+    <li>lib/qiflib_money.rb
+    <li>lib/qiflib_transaction.rb
+    <li>lib/qiflib_util.rb
+  </ul>
+</nav>
 
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-c-csv_category_field_names">::csv_category_field_names</a></li>
-          
-          <li><a href="#method-c-csv_transaction_field_names">::csv_transaction_field_names</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./Qiflib.html">Qiflib</a></li>
-        
-          <li><a href="./Qiflib/Category.html">Qiflib::Category</a></li>
-        
-          <li><a href="./Qiflib/Date.html">Qiflib::Date</a></li>
-        
-          <li><a href="./Qiflib/Money.html">Qiflib::Money</a></li>
-        
-          <li><a href="./Qiflib/Transaction.html">Qiflib::Transaction</a></li>
-        
-          <li><a href="./Qiflib/Util.html">Qiflib::Util</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
+    
   </div>
 
-  <div id="documentation">
-    <h1 class="module">Qiflib</h1>
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
 
-    <div id="description" class="description">
-      
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-csv_category_field_names">::csv_category_field_names</a>
+    
+    <li ><a href="#method-c-csv_transaction_field_names">::csv_transaction_field_names</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Qiflib.html">Qiflib</a>
+  
+    <li><a href="./Qiflib/Category.html">Qiflib::Category</a>
+  
+    <li><a href="./Qiflib/Date.html">Qiflib::Date</a>
+  
+    <li><a href="./Qiflib/Money.html">Qiflib::Money</a>
+  
+    <li><a href="./Qiflib/Transaction.html">Qiflib::Transaction</a>
+  
+    <li><a href="./Qiflib/Util.html">Qiflib::Util</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Qiflib</h1>
+
+  <div id="description" class="description">
+    
 <p>This file, and <a href="Qiflib.html">Qiflib</a> module, define constant
 values used in this library. This include the lists of field names within
 the csv and delimited files.</p>
 
-    </div><!-- description -->
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
     
+
     
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="AUTHOR">AUTHOR
+        
+        <dd class="description">
+        
+      
+        <dt id="DATE">DATE
+        
+        <dd class="description">
+        
+      
+        <dt id="EMAIL">EMAIL
+        
+        <dd class="description">
+        
+      
+        <dt id="SOURCE_IBANK">SOURCE_IBANK
+        
+        <dd class="description">
+        
+      
+        <dt id="SOURCE_QUICKEN">SOURCE_QUICKEN
+        
+        <dd class="description">
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
 
-      
+    
 
-      
-      <!-- Constants -->
-      <div id="constants-list" class="section">
-        <h3 class="section-header">Constants</h3>
-        <dl>
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-csv_category_field_names" class="method-detail ">
         
-          <dt><a name="AUTHOR">AUTHOR</a></dt>
+        <div class="method-heading">
+          <span class="method-name">csv_category_field_names</span><span
+            class="method-args">()</span>
           
-          <dd class="description"></dd>
+          <span class="method-click-advice">click to toggle source</span>
           
+        </div>
         
-          <dt><a name="DATE">DATE</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="EMAIL">EMAIL</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="SOURCE_IBANK">SOURCE_IBANK</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="SOURCE_QUICKEN">SOURCE_QUICKEN</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="VERSION">VERSION</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-        </dl>
-      </div>
-      
 
-      
-
-      <!-- Methods -->
-      
-      <div id="public-class-method-details" class="method-section section">
-        <h3 class="section-header">Public Class Methods</h3>
-
-      
-        <div id="csv_category_field_names-method" class="method-detail ">
-          <a name="method-c-csv_category_field_names"></a>
+        <div class="method-description">
+          
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">csv_category_field_names</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="csv_category_field_names-source">
-<pre>
-<span class="ruby-comment"># File lib/qiflib_constants.rb, line 14</span>
+          <div class="method-source-code" id="csv_category_field_names-source">
+            <pre><span class="ruby-comment"># File lib/qiflib_constants.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">csv_category_field_names</span>
-  <span class="ruby-node">%( id name )</span>
+  <span class="ruby-node">%w( id name )</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- csv_category_field_names-source -->
-            
-          </div>
+          </div><!-- csv_category_field_names-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- csv_category_field_names-method -->
+
+    
+      <div id="method-c-csv_transaction_field_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">csv_transaction_field_names</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
           
 
           
-        </div><!-- csv_category_field_names-method -->
-
-      
-        <div id="csv_transaction_field_names-method" class="method-detail ">
-          <a name="method-c-csv_transaction_field_names"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">csv_transaction_field_names</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="csv_transaction_field_names-source">
-<pre>
-<span class="ruby-comment"># File lib/qiflib_constants.rb, line 18</span>
+          <div class="method-source-code" id="csv_transaction_field_names-source">
+            <pre><span class="ruby-comment"># File lib/qiflib_constants.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">csv_transaction_field_names</span>
-  <span class="ruby-node">%(
+  <span class="ruby-node">%w(
     id
     acct_owner
     acct_name
@@ -301,29 +267,26 @@ the csv and delimited files.</p>
     eol_ind
   )</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- csv_transaction_field_names-source -->
-            
-          </div>
-
+          </div><!-- csv_transaction_field_names-source -->
           
+        </div>
 
-          
-        </div><!-- csv_transaction_field_names-method -->
+        
 
-      
-      </div><!-- public-class-method-details -->
+        
+      </div><!-- csv_transaction_field_names-method -->
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section><!-- public-class-method-details -->
   
+  </section><!-- 5Buntitled-5D -->
 
-  </div><!-- documentation -->
+</div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
 
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 
