@@ -1,5 +1,5 @@
 require 'simplecov'
-SimpleCov.start 
+SimpleCov.start
 
 require 'rspec'
 require 'qiflib'
@@ -23,7 +23,7 @@ S570 CD & Music
 Eu2, knoppfler, hootie
 $-60.23
 ADavidson
-ANorth Carolina 
+ANorth Carolina
 AUSA
 HEREDOC
   return as_lines(data)
@@ -44,8 +44,8 @@ E
 $-18.
 ADavidson
 ANorth Carolina
-AUSA 
-^  
+AUSA
+^
 HEREDOC
   return as_lines(data)
 end
@@ -53,7 +53,7 @@ end
 def validate_category_header_fields(header_array)
   header_array.size.should == 2
   header_array[0].should == 'id'
-  header_array[1].should == 'name' 
+  header_array[1].should == 'name'
 end
 
 def validate_transaction_header_fields(header_array)
@@ -91,24 +91,22 @@ end
 def as_lines(s)
   sio, lines = StringIO.new("#{s}"), []
   sio.each_line { | line | lines << line.strip }
-  return lines 
+  return lines
 end
 
 def write_file(out_name, content)
   out = File.new out_name, "w+"
   out.write content
   out.flush
-  out.close  
-  puts "file written: #{out_name}"  
-end 
+  out.close
+  puts "file written: #{out_name}"
+end
 
 def write_lines(out_name, lines, add_newline=false)
   sio = StringIO.new
-  lines.each { | line | 
+  lines.each { | line |
     sio << "#{line}"
-    sio << "\n" if add_newline 
+    sio << "\n" if add_newline
   }
   write_file(out_name, sio.string)
 end
-
-     

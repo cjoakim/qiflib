@@ -28,10 +28,6 @@ describe "Qiflib::Util" do
     'data/private/qiflib_categories.csv'
   end
 
-  def test_categories_txt_filename
-    'data/private/qiflib_categories.txt'
-  end
-
   def test_ddl_filename
     'data/qiflib.ddl'
   end

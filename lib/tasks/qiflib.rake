@@ -4,6 +4,8 @@ Copyright (C) 2013 Chris Joakim.
 
 =end
 
+require 'qiflib'
+
 desc 'Build the gem, then unpack and validate it'
 task :build do
   filename = "qiflib-#{Qiflib::VERSION}.gem"
