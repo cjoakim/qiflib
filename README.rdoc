@@ -1,4 +1,6 @@
-== Qiflib version 0.3.0
+== Qiflib
+
+version 0.3.0, released 8-25-2013
 
 A ruby library for reading and parsing qif files.
 
