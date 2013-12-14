@@ -383,7 +383,7 @@ section of a qif file.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">csv_header</span>
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">csv</span> <span class="ruby-operator">|</span>
     <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-identifier">csv_transaction_field_names</span>
-  <span class="ruby-keyword">end</span> 
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- csv_header-source -->
           
@@ -465,18 +465,18 @@ section of a qif file.</p>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span>
     <span class="ruby-identifier">stripped</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-      <span class="ruby-comment"># Field Indicator Explanations: </span>
-      <span class="ruby-comment"># D Date </span>
-      <span class="ruby-comment"># T Amount </span>
-      <span class="ruby-comment"># C Cleared status </span>
-      <span class="ruby-comment"># N Num (check or reference number)  </span>
-      <span class="ruby-comment"># P Payee </span>
-      <span class="ruby-comment"># M Memo </span>
+      <span class="ruby-comment"># Field Indicator Explanations:</span>
+      <span class="ruby-comment"># D Date</span>
+      <span class="ruby-comment"># T Amount</span>
+      <span class="ruby-comment"># C Cleared status</span>
+      <span class="ruby-comment"># N Num (check or reference number)</span>
+      <span class="ruby-comment"># P Payee</span>
+      <span class="ruby-comment"># M Memo</span>
       <span class="ruby-comment"># A Address (up to five lines; the sixth line is an optional message)</span>
-      <span class="ruby-comment"># L Category (Category/Subcategory/Transfer/Class)  </span>
-      <span class="ruby-comment"># S Category in split (Category/Transfer/Class)  </span>
-      <span class="ruby-comment"># E Memo in split </span>
-      <span class="ruby-comment"># $ Dollar amount of split </span>
+      <span class="ruby-comment"># L Category (Category/Subcategory/Transfer/Class)</span>
+      <span class="ruby-comment"># S Category in split (Category/Transfer/Class)</span>
+      <span class="ruby-comment"># E Memo in split</span>
+      <span class="ruby-comment"># $ Dollar amount of split</span>
       <span class="ruby-comment"># ^ End of the entry</span>
       <span class="ruby-keyword">if</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^D/</span>))
         <span class="ruby-ivar">@date</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Date</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>))
@@ -485,22 +485,16 @@ section of a qif file.</p>
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^P/</span>))
         <span class="ruby-ivar">@payee</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^C/</span>))
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ibank?</span>
-          <span class="ruby-ivar">@number</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
-        <span class="ruby-keyword">else</span>
-          <span class="ruby-ivar">@cleared</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
-        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@cleared</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^N/</span>))
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ibank?</span>
-          <span class="ruby-ivar">@ibank_n</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
-        <span class="ruby-keyword">else</span>
-          <span class="ruby-ivar">@number</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
-        <span class="ruby-keyword">end</span> 
+        <span class="ruby-ivar">@ibank_n</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
+        <span class="ruby-ivar">@number</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^M/</span>))
         <span class="ruby-ivar">@memo</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^L/</span>))
         <span class="ruby-ivar">@category</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>).<span class="ruby-identifier">downcase</span>
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^S/</span>))
+        <span class="ruby-ivar">@category</span> = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>).<span class="ruby-identifier">downcase</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-comment"># default to first split category</span>
         <span class="ruby-identifier">current_split</span>[<span class="ruby-string">&#39;category&#39;</span>] = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>).<span class="ruby-identifier">downcase</span>
       <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">stripped</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^E/</span>))
         <span class="ruby-identifier">current_split</span>[<span class="ruby-string">&#39;memo&#39;</span>] = <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">stripped</span>)
@@ -511,8 +505,8 @@ section of a qif file.</p>
         <span class="ruby-identifier">splits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current_split</span>
         <span class="ruby-ivar">@curr_split</span> = {}
       <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span> 
-  <span class="ruby-keyword">end</span> 
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- add_line-source -->
           
@@ -543,7 +537,7 @@ section of a qif file.</p>
 
           
           <div class="method-source-code" id="as_array-source">
-            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 107</span>
+            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">as_array</span>(<span class="ruby-identifier">idx</span>=<span class="ruby-value">0</span>)
   <span class="ruby-identifier">array</span> = []
   <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">idx</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
@@ -560,9 +554,9 @@ section of a qif file.</p>
   <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">memo</span>
   <span class="ruby-value">3</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">splits</span>.<span class="ruby-identifier">size</span>
-      <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">splits</span>[<span class="ruby-identifier">i</span>][<span class="ruby-string">&#39;amount&#39;</span>]
-      <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">splits</span>[<span class="ruby-identifier">i</span>][<span class="ruby-string">&#39;category&#39;</span>] 
-      <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">splits</span>[<span class="ruby-identifier">i</span>][<span class="ruby-string">&#39;memo&#39;</span>] 
+      <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">splits</span>[<span class="ruby-identifier">i</span>][<span class="ruby-string">&#39;amount&#39;</span>].<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">splits</span>[<span class="ruby-identifier">i</span>][<span class="ruby-string">&#39;category&#39;</span>]
+      <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">splits</span>[<span class="ruby-identifier">i</span>][<span class="ruby-string">&#39;memo&#39;</span>]
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;0.0&#39;</span>
       <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
@@ -608,7 +602,7 @@ section of a qif file.</p>
 
           
           <div class="method-source-code" id="current_split-source">
-            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 96</span>
+            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_split</span>
   <span class="ruby-ivar">@curr_split</span> = {} <span class="ruby-keyword">if</span> <span class="ruby-ivar">@curr_split</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@curr_split</span>
@@ -642,7 +636,7 @@ section of a qif file.</p>
 
           
           <div class="method-source-code" id="ibank-3F-source">
-            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 85</span>
+            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ibank?</span>
   <span class="ruby-ivar">@source_app</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;ibank&#39;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -675,7 +669,7 @@ section of a qif file.</p>
 
           
           <div class="method-source-code" id="line_value-source">
-            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 143</span>
+            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">line_value</span>(<span class="ruby-identifier">s</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
   <span class="ruby-identifier">s</span>[<span class="ruby-value">1</span>, <span class="ruby-identifier">s</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">strip</span>
@@ -709,11 +703,11 @@ section of a qif file.</p>
 
           
           <div class="method-source-code" id="to_csv-source">
-            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 101</span>
+            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">idx</span>=<span class="ruby-value">0</span>)
   <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">csv</span> <span class="ruby-operator">|</span>
     <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">as_array</span>(<span class="ruby-identifier">idx</span>)
-  <span class="ruby-keyword">end</span> 
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- to_csv-source -->
           
@@ -744,10 +738,10 @@ section of a qif file.</p>
 
           
           <div class="method-source-code" id="valid-3F-source">
-            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 89</span>
+            <pre><span class="ruby-comment"># File lib/qiflib_transaction.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">valid?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">8</span> 
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">8</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;0000-00-00&#39;</span>
   <span class="ruby-keyword">true</span>
 <span class="ruby-keyword">end</span></pre>

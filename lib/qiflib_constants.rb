@@ -4,8 +4,8 @@
 
 module Qiflib
 
-  VERSION        = '0.3.0'
-  DATE           = '2013-08-25'
+  VERSION        = '0.4.0'
+  DATE           = '2013-12-14'
   AUTHOR         = 'Chris Joakim'
   EMAIL          = 'cjoakim@bellsouth.net'
   SOURCE_QUICKEN = 'quicken'
@@ -46,6 +46,14 @@ module Qiflib
       address6
       eol_ind
     )
+  end
+
+  def self.csv_transaction_field_map
+    hash = {}
+    Qiflib.csv_transaction_field_names.each_with_index { | field, index |
+      hash[index] = field
+    }
+    hash
   end
 
 end

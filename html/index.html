@@ -81,6 +81,8 @@
 
 <h2 id="label-Qiflib"><a href="Qiflib.html">Qiflib</a><span><a href="#label-Qiflib">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
+<p>version 0.4.0, released 12-14-2013</p>
+
 <p>A ruby library for reading and parsing qif files.</p>
 
 <p>Transaction parsing is supported, including address fields, and up to three
@@ -89,8 +91,11 @@ each transaction.</p>
 
 <p>Category-name parsing is also supported.</p>
 
-<p>Also includes DDL generation for importing the parsed categories and 
+<p>Also includes DDL generation for importing the parsed categories and
 transactions into a sqlite3 database.</p>
+
+<p>Version 0.4.0 includes support for iBank version 4.7.5, this version
+exports silightly differently than previous versions.</p>
 
 <h2 id="label-Install">Install<span><a href="#label-Install">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
@@ -104,24 +109,24 @@ transactions into a sqlite3 database.</p>
 <span class="ruby-comment"># Qiflib::SOURCE_QUICKEN as the :source.</span>
 
 <span class="ruby-identifier">input_list</span> = []
-<span class="ruby-identifier">input_list</span> <span class="ruby-operator">&lt;&lt;</span> { 
+<span class="ruby-identifier">input_list</span> <span class="ruby-operator">&lt;&lt;</span> {
   :<span class="ruby-identifier">owner</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Chris&#39;</span>,
   :<span class="ruby-identifier">filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;data/ibank_cj.qif&#39;</span>,
   :<span class="ruby-identifier">source</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">SOURCE_IBANK</span> }
-<span class="ruby-identifier">input_list</span> <span class="ruby-operator">&lt;&lt;</span> { 
+<span class="ruby-identifier">input_list</span> <span class="ruby-operator">&lt;&lt;</span> {
   :<span class="ruby-identifier">owner</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Teri&#39;</span>,
   :<span class="ruby-identifier">filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;data/ibank_tj.qif&#39;</span>,
   :<span class="ruby-identifier">source</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">SOURCE_QUICKEN</span> }
 
-<span class="ruby-identifier">csv_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">transactions_to_csv</span>(<span class="ruby-identifier">input_list</span>) 
+<span class="ruby-identifier">csv_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">transactions_to_csv</span>(<span class="ruby-identifier">input_list</span>)
 
 <span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">csv_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span>
 
-<span class="ruby-comment"># Parse the transactions from one or more files to ^-delimited text. </span>
+<span class="ruby-comment"># Parse the transactions from one or more files to ^-delimited text.</span>
 <span class="ruby-comment"># The text lines are suitable for loading to sqlite3.</span>
 
 <span class="ruby-identifier">input_list</span> = []
-<span class="ruby-identifier">input_list</span> <span class="ruby-operator">&lt;&lt;</span> { 
+<span class="ruby-identifier">input_list</span> <span class="ruby-operator">&lt;&lt;</span> {
   :<span class="ruby-identifier">owner</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Chris&#39;</span>,
   :<span class="ruby-identifier">filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;data/ibank_cj.qif&#39;</span>,
   :<span class="ruby-identifier">source</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">SOURCE_IBANK</span> }
@@ -135,26 +140,26 @@ transactions into a sqlite3 database.</p>
 <span class="ruby-identifier">input_list</span> = [ <span class="ruby-string">&#39;data/ibank_cj.qif&#39;</span> ]
 <span class="ruby-identifier">csv_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">catetory_names_to_csv</span>(<span class="ruby-identifier">input_list</span>)
 
-<span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">csv_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span> 
+<span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">csv_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span>
 
-<span class="ruby-comment"># Parse the categories from one or more files to ^-delimited text. </span>
-<span class="ruby-comment"># The text lines are suitable for loading to sqlite3. </span>
+<span class="ruby-comment"># Parse the categories from one or more files to ^-delimited text.</span>
+<span class="ruby-comment"># The text lines are suitable for loading to sqlite3.</span>
 
 <span class="ruby-identifier">input_list</span> = [ <span class="ruby-string">&#39;data/ibank_cj.qif&#39;</span> ]
 <span class="ruby-identifier">delim_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">catetory_names_to_delim</span>(<span class="ruby-identifier">input_list</span>)
 
-<span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">delim_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span> 
+<span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">delim_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span>
 
 <span class="ruby-comment"># Generate the DDL for a sqlite3 database with categories and transactions tables.</span>
 
 <span class="ruby-identifier">ddl_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">generate_sqlite_ddl</span>
 
-<span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">ddl_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span>; <span class="ruby-identifier">use</span> <span class="ruby-identifier">it</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">following</span> <span class="ruby-identifier">bash</span><span class="ruby-operator">-</span><span class="ruby-identifier">shell</span> <span class="ruby-identifier">script</span>  
+<span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">ddl_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span>; <span class="ruby-identifier">use</span> <span class="ruby-identifier">it</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">following</span> <span class="ruby-identifier">bash</span><span class="ruby-operator">-</span><span class="ruby-identifier">shell</span> <span class="ruby-identifier">script</span>
 
-<span class="ruby-comment"># Generate a bash-shell script to load the categories and transactions </span>
+<span class="ruby-comment"># Generate a bash-shell script to load the categories and transactions</span>
 <span class="ruby-comment"># delimited files into a sqlite3 database, using the above DDL.</span>
 
-<span class="ruby-identifier">sh_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">generate_sqlite_load_script</span> 
+<span class="ruby-identifier">sh_lines</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">generate_sqlite_load_script</span>
 
 <span class="ruby-operator">...</span> <span class="ruby-identifier">write</span> <span class="ruby-identifier">sh_lines</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">file</span>; <span class="ruby-identifier">chmod</span> <span class="ruby-value">744</span>; <span class="ruby-identifier">run</span> <span class="ruby-identifier">it</span>.
 </pre>
@@ -204,12 +209,43 @@ create table categories(
 
 .separator &#39;^&#39;
 
-.import qiflib_transactions.txt transactions
-.import qiflib_categories.txt   categories</pre>
+.import private/qiflib_transactions.txt transactions
+.import private/qiflib_categories.txt   categories</pre>
 
-<h2 id="label-Generated+shell+script+">Generated shell script <span><a href="#label-Generated+shell+script+">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-CSV+fields">CSV fields<span><a href="#label-CSV+fields">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
-<pre># bash-shell script 
+<pre>csv field index 0 = id
+csv field index 1 = acct_owner
+csv field index 2 = acct_name
+csv field index 3 = acct_type
+csv field index 4 = date
+csv field index 5 = amount
+csv field index 6 = number
+csv field index 7 = ibank_n
+csv field index 8 = cleared
+csv field index 9 = payee
+csv field index 10 = category
+csv field index 11 = memo
+csv field index 12 = split1_amount
+csv field index 13 = split1_category
+csv field index 14 = split1_memo
+csv field index 15 = split2_amount
+csv field index 16 = split2_category
+csv field index 17 = split2_memo
+csv field index 18 = split3_amount
+csv field index 19 = split3_category
+csv field index 20 = split3_memo
+csv field index 21 = address1
+csv field index 22 = address2
+csv field index 23 = address3
+csv field index 24 = address4
+csv field index 25 = address5
+csv field index 26 = address6
+csv field index 27 = eol_ind</pre>
+
+<h2 id="label-Generated+shell+script">Generated shell script<span><a href="#label-Generated+shell+script">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<pre># bash-shell script
 
 #!/bin/bash
 

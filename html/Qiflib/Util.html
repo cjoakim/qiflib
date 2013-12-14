@@ -77,6 +77,8 @@
     
     <li ><a href="#method-c-catetory_names_to_delim">::catetory_names_to_delim</a>
     
+    <li ><a href="#method-c-describe_csv_field_array">::describe_csv_field_array</a>
+    
     <li ><a href="#method-c-generate_sqlite_ddl">::generate_sqlite_ddl</a>
     
     <li ><a href="#method-c-generate_sqlite_load_script">::generate_sqlite_load_script</a>
@@ -200,7 +202,7 @@ given Array of filenames.</p>
       <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
         <span class="ruby-identifier">file</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">file</span>
         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Exception: #{err.class.name} #{err.message} #{err.inspect}&quot;</span>
-      <span class="ruby-keyword">end</span> 
+      <span class="ruby-keyword">end</span>
     }
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">categories</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">idx</span> <span class="ruby-operator">|</span>
@@ -265,6 +267,44 @@ within the given Array of filenames.</p>
       </div><!-- catetory_names_to_delim-method -->
 
     
+      <div id="method-c-describe_csv_field_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">describe_csv_field_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>For testing purposes:  <a
+href="Util.html#method-c-describe_csv_field_array">::describe_csv_field_array</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="describe_csv_field_array-source">
+            <pre><span class="ruby-comment"># File lib/qiflib_util.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">describe_csv_field_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">field_map</span> = <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-identifier">csv_transaction_field_map</span>
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">val</span>, <span class="ruby-identifier">idx</span> <span class="ruby-operator">|</span>
+    <span class="ruby-identifier">field_name</span> = <span class="ruby-identifier">field_map</span>[<span class="ruby-identifier">idx</span>]
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;array[#{idx}].should == &#39;#{val}&#39; # #{field_name}&quot;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- describe_csv_field_array-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- describe_csv_field_array-method -->
+
+    
       <div id="method-c-generate_sqlite_ddl" class="method-detail ">
         
         <div class="method-heading">
@@ -290,7 +330,7 @@ and &#39;transactions&#39; tables.  The DDL will also import the
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate_sqlite_ddl</span>
   <span class="ruby-identifier">lines</span> = []
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;drop table if exists transactions;&#39;</span> 
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;drop table if exists transactions;&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;drop table if exists categories;&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;create table transactions(&#39;</span>
@@ -326,14 +366,14 @@ and &#39;transactions&#39; tables.  The DDL will also import the
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;create table categories(&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;  id       integer,&#39;</span>
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;  name     varchar(80)&#39;</span> 
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;);&#39;</span> 
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span> 
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;  name     varchar(80)&#39;</span>
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;);&#39;</span>
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;.separator &#39;^&#39;&quot;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;.import qiflib_transactions.txt transactions&#39;</span>
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;.import qiflib_categories.txt   categories&#39;</span>
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>  
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;.import private/qiflib_transactions.txt transactions&#39;</span>
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;.import private/qiflib_categories.txt   categories&#39;</span>
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">lines</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- generate_sqlite_ddl-source -->
@@ -359,7 +399,7 @@ and &#39;transactions&#39; tables.  The DDL will also import the
 
         <div class="method-description">
           
-          <p>Return the lines of bash-shell script to load the sqlite3 database via  the
+          <p>Return the lines of bash-shell script to load the sqlite3 database via the
 DDL generated in method &#39;generate_sqlite_ddl&#39;.</p>
           
           
@@ -372,7 +412,7 @@ DDL generated in method &#39;generate_sqlite_ddl&#39;.</p>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;#!/bin/bash&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;sqlite3 #{db_name} &lt; #{ddl_name}&quot;</span>
-  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span> 
+  <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-identifier">lines</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- generate_sqlite_load_script-source -->
@@ -400,7 +440,7 @@ DDL generated in method &#39;generate_sqlite_ddl&#39;.</p>
           
           <p>Return lines in CSV format which contain the list of transactions within
 the given input_list Array.  Each Hash within the input_list should contain
-keys :owner, :filename, and :source.  Specify either  the value
+keys :owner, :filename, and :source.  Specify either the value
 Qiflib::SOURCE_IBANK or Qiflib::SOURCE_QUICKEN for :source.</p>
           
           
@@ -413,7 +453,7 @@ Qiflib::SOURCE_IBANK or Qiflib::SOURCE_QUICKEN for :source.</p>
   <span class="ruby-identifier">csv_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Qiflib</span><span class="ruby-operator">::</span><span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">csv_header</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">input_list</span>
     <span class="ruby-identifier">input_list</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">input_hash</span> <span class="ruby-operator">|</span>
-      <span class="ruby-identifier">owner</span>    = <span class="ruby-identifier">input_hash</span>[<span class="ruby-value">:owner</span>] 
+      <span class="ruby-identifier">owner</span>    = <span class="ruby-identifier">input_hash</span>[<span class="ruby-value">:owner</span>]
       <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">input_hash</span>[<span class="ruby-value">:filename</span>]
       <span class="ruby-identifier">source</span>   = <span class="ruby-identifier">input_hash</span>[<span class="ruby-value">:source</span>]
       <span class="ruby-identifier">process_file_for_transactions</span>(<span class="ruby-identifier">owner</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">source</span>, <span class="ruby-identifier">transactions</span>)
@@ -449,7 +489,7 @@ Qiflib::SOURCE_IBANK or Qiflib::SOURCE_QUICKEN for :source.</p>
           
           <p>Return lines in ^-delimited format which contain the list of transactions
 within the given input_list Array.  Each Hash within the input_list should
-contain keys :owner, :filename, and :source.  Specify either  the value
+contain keys :owner, :filename, and :source.  Specify either the value
 Qiflib::SOURCE_IBANK or Qiflib::SOURCE_QUICKEN for :source.</p>
           
           

@@ -36,33 +36,41 @@ end
 desc 'Convert qif file(s) to csv format.'
 task :qif2csv do
   f = command_line_arg('f', 'data/private/ibank_20120328.qif')
+  f = command_line_arg('f', '../cjoakim/ruby/quicker/data/ibank.qif')
   input_list = []
   input_list << {
     :owner    => 'Chris',
     :filename => f,
     :source   => Qiflib::SOURCE_IBANK }
   puts "==="
-  csv_lines = Qiflib::Util.transactions_to_csv(input_list)
-  csv_lines.each { | line | puts line }
+  Qiflib::Util.transactions_to_csv(input_list).each { | line | puts line }
   puts "==="
-  csv_lines = Qiflib::Util.catetory_names_to_csv([f])
-  csv_lines.each { | line | puts line.inspect }
+  Qiflib::Util.catetory_names_to_csv([f]).each { | line | puts line }
   puts "==="
 end
 
 desc 'Convert qif file(s) to delim txt format.'
 task :qif2delim do
   f = command_line_arg('f', 'data/private/ibank_20120328.qif')
+  f = command_line_arg('f', '../cjoakim/ruby/quicker/data/ibank.qif')
   input_list = []
   input_list << {
     :owner    => 'Chris',
     :filename => f,
     :source   => Qiflib::SOURCE_IBANK }
   puts "==="
-  csv_lines = Qiflib::Util.transactions_to_delim(input_list)
-  csv_lines.each { | line | puts line }
+  Qiflib::Util.transactions_to_delim(input_list).each { | line | puts line }
   puts "==="
-  csv_lines = Qiflib::Util.catetory_names_to_delim([f])
-  csv_lines.each { | line | puts line.inspect }
+  Qiflib::Util.catetory_names_to_delim([f]).each { | line | puts line }
   puts "==="
 end
+
+desc 'List the CSV fields and their indices'
+task :list_csv_fields do
+  hash = Qiflib::csv_transaction_field_map
+  hash.keys.sort.each { | idx |
+    name = hash[idx]
+    puts "csv field index #{idx} = #{name}"
+  }
+end
+

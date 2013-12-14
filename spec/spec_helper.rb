@@ -10,41 +10,68 @@ RSpec.configure do | config |
 end
 
 def sample_split_transaction1_lines
+
+  # D2/10/01
+  # PBorders Books & Music
+  # Mtest memo
+  # T-104.23
+  # NWithdrawal
+  # S516 Tech Books
+  # Ehttp pocket ref, java tuning
+  # $-44.
+  # S570 CD & Music
+  # Eu2, knoppfler, hootie
+  # $-60.23
+  # ADavidson
+  # ANorth Carolina
+  # AUSA
+  # HEREDOC
+
   data = <<HEREDOC
 D2/10/01
 PBorders Books & Music
 Mtest memo
 T-104.23
-NWithdrawal
+CX
 S516 Tech Books
 Ehttp pocket ref, java tuning
 $-44.
 S570 CD & Music
 Eu2, knoppfler, hootie
 $-60.23
-ADavidson
-ANorth Carolina
-AUSA
 HEREDOC
   return as_lines(data)
 end
 
 def sample_split_transaction2_lines
+
+  # D1/16/10
+  # PAmazon.com
+  # M2 norah jones, 2 coldplay cd's.  comet & reverse ajax
+  # T-62.95
+  # NWithdrawal
+  # S570 CD & Music
+  # E
+  # $-44.95
+  # S516 Tech Books
+  # E
+  # $-18.
+  # ADavidson
+  # ANorth Carolina
+  # AUSA
+
   data = <<HEREDOC
 D1/16/10
 PAmazon.com
 M2 norah jones, 2 coldplay cd's.  comet & reverse ajax
 T-62.95
-NWithdrawal
+CX
 S570 CD & Music
 E
 $-44.95
 S516 Tech Books
 E
 $-18.
-ADavidson
-ANorth Carolina
-AUSA
 ^
 HEREDOC
   return as_lines(data)

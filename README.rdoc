@@ -1,6 +1,6 @@
 == Qiflib
 
-version 0.3.0, released 8-25-2013
+version 0.4.0, released 12-14-2013
 
 A ruby library for reading and parsing qif files.
 
@@ -12,6 +12,10 @@ Category-name parsing is also supported.
 
 Also includes DDL generation for importing the parsed categories and
 transactions into a sqlite3 database.
+
+Version 0.4.0 includes support for iBank version 4.7.5, this version
+exports silightly differently than previous versions.
+
 
 == Install
 
@@ -132,6 +136,38 @@ transactions into a sqlite3 database.
 
   .import private/qiflib_transactions.txt transactions
   .import private/qiflib_categories.txt   categories
+
+
+== CSV fields
+
+  csv field index 0 = id
+  csv field index 1 = acct_owner
+  csv field index 2 = acct_name
+  csv field index 3 = acct_type
+  csv field index 4 = date
+  csv field index 5 = amount
+  csv field index 6 = number
+  csv field index 7 = ibank_n
+  csv field index 8 = cleared
+  csv field index 9 = payee
+  csv field index 10 = category
+  csv field index 11 = memo
+  csv field index 12 = split1_amount
+  csv field index 13 = split1_category
+  csv field index 14 = split1_memo
+  csv field index 15 = split2_amount
+  csv field index 16 = split2_category
+  csv field index 17 = split2_memo
+  csv field index 18 = split3_amount
+  csv field index 19 = split3_category
+  csv field index 20 = split3_memo
+  csv field index 21 = address1
+  csv field index 22 = address2
+  csv field index 23 = address3
+  csv field index 24 = address4
+  csv field index 25 = address5
+  csv field index 26 = address6
+  csv field index 27 = eol_ind
 
 
 == Generated shell script

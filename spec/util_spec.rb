@@ -13,7 +13,7 @@ require 'spec_helper'
 describe "Qiflib::Util" do
 
   def test_qif_filename
-    'data/private/ibank_20120328.qif'
+    'data/private/ibank_20131214.qif'
   end
 
   def test_transactions_csv_filename
@@ -38,7 +38,7 @@ describe "Qiflib::Util" do
 
   it "should implement method 'transactions_to_csv', for ibank files" do
     csv_filename = test_transactions_csv_filename
-    expected_line_count = 9945
+    expected_line_count  = 10000
     expected_field_count = 28
     input_list = []
     input_list << {
@@ -47,80 +47,83 @@ describe "Qiflib::Util" do
       :source   => Qiflib::SOURCE_IBANK }
     csv_lines = Qiflib::Util.transactions_to_csv(input_list)
     write_lines(csv_filename, csv_lines)
-    csv_lines.size.should == expected_line_count
-    csv_in = IO.readlines(csv_filename)
-    csv_in.size.should == expected_line_count
 
-    header_array = CSV.parse(csv_in[0])[0]
+    csv_lines.size.should > expected_line_count
+    csv_in = IO.readlines(csv_filename)
+    csv_in.size.should > expected_line_count
+
+    header_array     = CSV.parse(csv_in[0])[0]
     first_tran_array = CSV.parse(csv_in[1])[0]
-    last_tran_array  = CSV.parse(csv_in[-1])[0]
+    last_tran_array  = CSV.parse(csv_in[-6])[0]
 
     validate_transaction_header_fields(header_array)
 
-    first_tran_array.size.should == expected_field_count
-    first_tran_array[0].should == '1'
-    first_tran_array[1].should == 'chris'
-    first_tran_array[2].should == 'amex blue 11006'
-    first_tran_array[3].should == 'ccard'
-    first_tran_array[4].should == '2002-05-04'
-    first_tran_array[5].should == '-100.00'
-    first_tran_array[6].should == ''
-    first_tran_array[7].should == 'Withdrawal'
-    first_tran_array[8].should == ''
-    first_tran_array[9].should == "Zapata\'s Cantina"
-    first_tran_array[10].should == '550 dining out'
-    first_tran_array[11].should == 'with Karen & Gary'
-    first_tran_array[12].should == '0.0'
-    first_tran_array[13].should == ''
-    first_tran_array[14].should == ''
-    first_tran_array[15].should == '0.0'
-    first_tran_array[16].should == ''
-    first_tran_array[17].should == ''
-    first_tran_array[18].should == '0.0'
-    first_tran_array[19].should == ''
-    first_tran_array[20].should == ''
-    first_tran_array[21].should == ''
-    first_tran_array[22].should == ''
-    first_tran_array[23].should == ''
-    first_tran_array[24].should == ''
-    first_tran_array[25].should == ''
-    first_tran_array[26].should == ''
-    first_tran_array[27].should == 'x'
+    # Qiflib::Util::describe_csv_field_array(first_tran_array)
+    array = first_tran_array
+    array[0].should == '1' # id
+    array[1].should == 'chris' # acct_owner
+    array[2].should == 'amex blue 11006' # acct_name
+    array[3].should == 'ccard' # acct_type
+    array[4].should == '2002-05-04' # date
+    array[5].should == '-100.00' # amount
+    array[6].should == '' # number
+    array[7].should == '' # ibank_n
+    array[8].should == 'X' # cleared
+    array[9].should == "Zapata's Cantina" # payee
+    array[10].should == '550 dining out' # category
+    array[11].should == 'with Karen & Gary' # memo
+    array[12].should == '0.0' # split1_amount
+    array[13].should == '' # split1_category
+    array[14].should == '' # split1_memo
+    array[15].should == '0.0' # split2_amount
+    array[16].should == '' # split2_category
+    array[17].should == '' # split2_memo
+    array[18].should == '0.0' # split3_amount
+    array[19].should == '' # split3_category
+    array[20].should == '' # split3_memo
+    array[21].should == '' # address1
+    array[22].should == '' # address2
+    array[23].should == '' # address3
+    array[24].should == '' # address4
+    array[25].should == '' # address5
+    array[26].should == '' # address6
+    array[27].should == 'x' # eol_ind
 
-    last_tran_array.size.should == expected_field_count
-    last_tran_array[0].should == '9944'
-    last_tran_array[1].should == 'chris'
-    last_tran_array[2].should == 'wachovia checking'
-    last_tran_array[3].should == 'bank'
-    last_tran_array[4].should == '2012-03-28'
-    last_tran_array[5].should == '-1000.00'
-    last_tran_array[6].should == '4884'
-    last_tran_array[7].should == 'POS'
-    last_tran_array[8].should == ''
-    last_tran_array[9].should == 'Cardmember Service'
-    last_tran_array[10].should == '[marriott rewards visa 8822]'
-    last_tran_array[11].should == '$982.83 due 4/16'
-    last_tran_array[12].should == '0.0'
-    last_tran_array[13].should == ''
-    last_tran_array[14].should == ''
-    last_tran_array[15].should == '0.0'
-    last_tran_array[16].should == ''
-    last_tran_array[17].should == ''
-    last_tran_array[18].should == '0.0'
-    last_tran_array[19].should == ''
-    last_tran_array[20].should == ''
-    last_tran_array[21].should == ''
-    last_tran_array[22].should == ''
-    last_tran_array[23].should == ''
-    last_tran_array[24].should == ''
-    last_tran_array[25].should == ''
-    last_tran_array[26].should == ''
-    last_tran_array[27].should == 'x'
+    # Qiflib::Util::describe_csv_field_array(last_tran_array)
+    array = last_tran_array
+    array[0].should == '10202' # id
+    array[1].should == 'chris' # acct_owner
+    array[2].should == 'wachovia checking' # acct_name
+    array[3].should == 'bank' # acct_type
+    array[4].should == '2013-12-05' # date
+    array[5].should == '-85.00' # amount
+    array[6].should == '5209' # number
+    array[7].should == '5209' # ibank_n
+    array[8].should == '' # cleared
+    array[9].should == 'Duke Energy' # payee
+    array[10].should == '120 electric' # category
+    array[11].should == '81.59 due 12/9' # memo
+    array[12].should == '0.0' # split1_amount
+    array[13].should == '' # split1_category
+    array[14].should == '' # split1_memo
+    array[15].should == '0.0' # split2_amount
+    array[16].should == '' # split2_category
+    array[17].should == '' # split2_memo
+    array[18].should == '0.0' # split3_amount
+    array[19].should == '' # split3_category
+    array[20].should == '' # split3_memo
+    array[21].should == '' # address1
+    array[22].should == '' # address2
+    array[23].should == '' # address3
+    array[24].should == '' # address4
+    array[25].should == '' # address5
+    array[26].should == '' # address6
+    array[27].should == 'x' # eol_ind
   end
 
   it "should implement method 'transactions_to_delim', for ibank files" do
     delim_filename = test_transactions_txt_filename
-    expected_line_count = 9944
+    expected_line_count  = 10000
     expected_field_count = 28
     input_list = []
     input_list << {
@@ -129,81 +132,84 @@ describe "Qiflib::Util" do
       :source   => Qiflib::SOURCE_IBANK }
     delim_lines = Qiflib::Util.transactions_to_delim(input_list)
     write_lines(delim_filename, delim_lines)
-    delim_lines.size.should == expected_line_count
+
+    delim_lines.size.should > expected_line_count
     delim_in = IO.readlines(delim_filename)
-    delim_in.size.should == expected_line_count
+    delim_in.size.should > expected_line_count
 
     first_tran_array = delim_in[0].strip.split('^')
-    last_tran_array  = delim_in[-1].strip.split('^')
+    last_tran_array  = delim_in[-6].strip.split('^')
 
-    first_tran_array.size.should == expected_field_count
-    first_tran_array[0].should == '1'
-    first_tran_array[1].should == 'chris'
-    first_tran_array[2].should == 'amex blue 11006'
-    first_tran_array[3].should == 'ccard'
-    first_tran_array[4].should == '2002-05-04'
-    first_tran_array[5].should == '-100.00'
-    first_tran_array[6].should == ''
-    first_tran_array[7].should == 'Withdrawal'
-    first_tran_array[8].should == ''
-    first_tran_array[9].should == "Zapata\'s Cantina"
-    first_tran_array[10].should == '550 dining out'
-    first_tran_array[11].should == 'with Karen & Gary'
-    first_tran_array[12].should == '0.0'
-    first_tran_array[13].should == ''
-    first_tran_array[14].should == ''
-    first_tran_array[15].should == '0.0'
-    first_tran_array[16].should == ''
-    first_tran_array[17].should == ''
-    first_tran_array[18].should == '0.0'
-    first_tran_array[19].should == ''
-    first_tran_array[20].should == ''
-    first_tran_array[21].should == ''
-    first_tran_array[22].should == ''
-    first_tran_array[23].should == ''
-    first_tran_array[24].should == ''
-    first_tran_array[25].should == ''
-    first_tran_array[26].should == ''
-    first_tran_array[27].should == 'x'
+    array = first_tran_array
+    array[0].should == '1' # id
+    array[1].should == 'chris' # acct_owner
+    array[2].should == 'amex blue 11006' # acct_name
+    array[3].should == 'ccard' # acct_type
+    array[4].should == '2002-05-04' # date
+    array[5].should == '-100.00' # amount
+    array[6].should == '' # number
+    array[7].should == '' # ibank_n
+    array[8].should == 'X' # cleared
+    array[9].should == "Zapata's Cantina" # payee
+    array[10].should == '550 dining out' # category
+    array[11].should == 'with Karen & Gary' # memo
+    array[12].should == '0.0' # split1_amount
+    array[13].should == '' # split1_category
+    array[14].should == '' # split1_memo
+    array[15].should == '0.0' # split2_amount
+    array[16].should == '' # split2_category
+    array[17].should == '' # split2_memo
+    array[18].should == '0.0' # split3_amount
+    array[19].should == '' # split3_category
+    array[20].should == '' # split3_memo
+    array[21].should == '' # address1
+    array[22].should == '' # address2
+    array[23].should == '' # address3
+    array[24].should == '' # address4
+    array[25].should == '' # address5
+    array[26].should == '' # address6
+    array[27].should == 'x' # eol_ind
 
-    last_tran_array.size.should == expected_field_count
-    last_tran_array[0].should == '9944'
-    last_tran_array[1].should == 'chris'
-    last_tran_array[2].should == 'wachovia checking'
-    last_tran_array[3].should == 'bank'
-    last_tran_array[4].should == '2012-03-28'
-    last_tran_array[5].should == '-1000.00'
-    last_tran_array[6].should == '4884'
-    last_tran_array[7].should == 'POS'
-    last_tran_array[8].should == ''
-    last_tran_array[9].should == 'Cardmember Service'
-    last_tran_array[10].should == '[marriott rewards visa 8822]'
-    last_tran_array[11].should == '$982.83 due 4/16'
-    last_tran_array[12].should == '0.0'
-    last_tran_array[13].should == ''
-    last_tran_array[14].should == ''
-    last_tran_array[15].should == '0.0'
-    last_tran_array[16].should == ''
-    last_tran_array[17].should == ''
-    last_tran_array[18].should == '0.0'
-    last_tran_array[19].should == ''
-    last_tran_array[20].should == ''
-    last_tran_array[21].should == ''
-    last_tran_array[22].should == ''
-    last_tran_array[23].should == ''
-    last_tran_array[24].should == ''
-    last_tran_array[25].should == ''
-    last_tran_array[26].should == ''
-    last_tran_array[27].should == 'x'
+    # Qiflib::Util::describe_csv_field_array(last_tran_array)
+    array = last_tran_array
+    array[0].should == '10202' # id
+    array[1].should == 'chris' # acct_owner
+    array[2].should == 'wachovia checking' # acct_name
+    array[3].should == 'bank' # acct_type
+    array[4].should == '2013-12-05' # date
+    array[5].should == '-85.00' # amount
+    array[6].should == '5209' # number
+    array[7].should == '5209' # ibank_n
+    array[8].should == '' # cleared
+    array[9].should == 'Duke Energy' # payee
+    array[10].should == '120 electric' # category
+    array[11].should == '81.59 due 12/9' # memo
+    array[12].should == '0.0' # split1_amount
+    array[13].should == '' # split1_category
+    array[14].should == '' # split1_memo
+    array[15].should == '0.0' # split2_amount
+    array[16].should == '' # split2_category
+    array[17].should == '' # split2_memo
+    array[18].should == '0.0' # split3_amount
+    array[19].should == '' # split3_category
+    array[20].should == '' # split3_memo
+    array[21].should == '' # address1
+    array[22].should == '' # address2
+    array[23].should == '' # address3
+    array[24].should == '' # address4
+    array[25].should == '' # address5
+    array[26].should == '' # address6
+    array[27].should == 'x' # eol_ind
   end
 
   it "should implement method 'catetory_names_to_csv', for ibank files" do
     csv_filename = test_categories_csv_filename
     csv_lines = Qiflib::Util.catetory_names_to_csv([test_qif_filename])
     write_lines(csv_filename, csv_lines)
-    csv_lines.size.should == 88
+
+    csv_lines.size.should > 80
     csv_in = IO.readlines(csv_filename)
-    csv_in.size.should == 88
+    csv_in.size.should > 80
 
     header_array    = CSV.parse(csv_in[0])[0]
     first_cat_array = CSV.parse(csv_in[1])[0]
@@ -216,17 +222,18 @@ describe "Qiflib::Util" do
     first_cat_array[1].should == '001 salary'
 
     last_cat_array.size.should == 2
-    last_cat_array[0].should == '87'
-    last_cat_array[1].should == '_qk bal to stmt'
+    last_cat_array[0].should == '88'
+    last_cat_array[1].should == '•marriott rewards visa'
   end
 
   it "should implement method 'catetory_names_to_delim', for ibank files" do
     delim_filename = test_categories_csv_filename
     delim_lines = Qiflib::Util.catetory_names_to_delim([test_qif_filename])
     write_lines(delim_filename, delim_lines)
-    delim_lines.size.should == 87
+
+    delim_lines.size.should > 80
     delim_in = IO.readlines(delim_filename)
-    delim_in.size.should == 87
+    delim_in.size.should > 80
 
     first_cat_array = delim_in[0].strip.split('^')
     last_cat_array  = delim_in[-1].strip.split('^')
@@ -236,8 +243,8 @@ describe "Qiflib::Util" do
     first_cat_array[1].should == '001 salary'
 
     last_cat_array.size.should == 2
-    last_cat_array[0].should == '87'
-    last_cat_array[1].should == '_qk bal to stmt'
+    last_cat_array[0].should == '88'
+    last_cat_array[1].should == '•marriott rewards visa'
   end
 
   it "should implement method 'generate_sqlite_ddl'" do
@@ -258,6 +265,7 @@ describe "Qiflib::Util" do
     sh_filename = test_sh_filename
     sh_lines = Qiflib::Util.generate_sqlite_load_script
     write_lines(sh_filename, sh_lines, true)
+
     sh_lines.size.should == 4
     sh_in = IO.readlines(sh_filename)
     sh_in.size.should == 4

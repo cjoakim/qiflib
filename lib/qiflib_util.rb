@@ -173,6 +173,16 @@ module Qiflib
       lines
     end
 
+    # For testing purposes:  Qiflib::Util::describe_csv_field_array(array)
+
+    def self.describe_csv_field_array(array)
+      field_map = Qiflib::csv_transaction_field_map
+      array.each_with_index { | val, idx |
+        field_name = field_map[idx]
+        puts "array[#{idx}].should == '#{val}' # #{field_name}"
+      }
+    end
+
     private
 
     def self.process_file_for_transactions(owner, filename, source, transactions)

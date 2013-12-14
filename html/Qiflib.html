@@ -74,6 +74,8 @@
     
     <li ><a href="#method-c-csv_category_field_names">::csv_category_field_names</a>
     
+    <li ><a href="#method-c-csv_transaction_field_map">::csv_transaction_field_map</a>
+    
     <li ><a href="#method-c-csv_transaction_field_names">::csv_transaction_field_names</a>
     
   </ul>
@@ -213,6 +215,43 @@ the csv and delimited files.</p>
 
         
       </div><!-- csv_category_field_names-method -->
+
+    
+      <div id="method-c-csv_transaction_field_map" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">csv_transaction_field_map</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="csv_transaction_field_map-source">
+            <pre><span class="ruby-comment"># File lib/qiflib_constants.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">csv_transaction_field_map</span>
+  <span class="ruby-identifier">hash</span> = {}
+  <span class="ruby-constant">Qiflib</span>.<span class="ruby-identifier">csv_transaction_field_names</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">field</span>, <span class="ruby-identifier">index</span> <span class="ruby-operator">|</span>
+    <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-identifier">field</span>
+  }
+  <span class="ruby-identifier">hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- csv_transaction_field_map-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- csv_transaction_field_map-method -->
 
     
       <div id="method-c-csv_transaction_field_names" class="method-detail ">
