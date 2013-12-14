@@ -10,7 +10,7 @@ Gem::Specification.new do | s |
   s.description = 'A ruby library for qif file processing.'
   s.authors     = [ Qiflib::AUTHOR ]
   s.email       = Qiflib::EMAIL
-  s.homepage    = 'http://rubygems.org/gems/qiflib'
+  s.homepage    = 'https://github.com/cjoakim/qiflib'
   s.platform    = Gem::Platform::RUBY
   s.required_ruby_version = '>= 2.0.0'
   s.has_rdoc    = true

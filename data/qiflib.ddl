@@ -10,7 +10,6 @@ create table transactions(
   date             varchar(80),
   amount           real,
   number           varchar(80),
-  ibank_n          varchar(80),
   cleared          varchar(80),
   payee            varchar(80),
   category         varchar(80),

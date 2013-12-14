@@ -33,6 +33,7 @@ PBorders Books & Music
 Mtest memo
 T-104.23
 CX
+N123
 S516 Tech Books
 Ehttp pocket ref, java tuning
 $-44.
@@ -66,6 +67,7 @@ PAmazon.com
 M2 norah jones, 2 coldplay cd's.  comet & reverse ajax
 T-62.95
 CX
+N123
 S570 CD & Music
 E
 $-44.95
@@ -84,7 +86,7 @@ def validate_category_header_fields(header_array)
 end
 
 def validate_transaction_header_fields(header_array)
-  header_array.size.should == 28
+  header_array.size.should == 27
   header_array[0].should == 'id'
   header_array[1].should == 'acct_owner'
   header_array[2].should == 'acct_name'
@@ -92,27 +94,26 @@ def validate_transaction_header_fields(header_array)
   header_array[4].should == 'date'
   header_array[5].should == 'amount'
   header_array[6].should == 'number'
-  header_array[7].should == 'ibank_n'
-  header_array[8].should == 'cleared'
-  header_array[9].should == 'payee'
-  header_array[10].should == 'category'
-  header_array[11].should == 'memo'
-  header_array[12].should == 'split1_amount'
-  header_array[13].should == 'split1_category'
-  header_array[14].should == 'split1_memo'
-  header_array[15].should == 'split2_amount'
-  header_array[16].should == 'split2_category'
-  header_array[17].should == 'split2_memo'
-  header_array[18].should == 'split3_amount'
-  header_array[19].should == 'split3_category'
-  header_array[20].should == 'split3_memo'
-  header_array[21].should == 'address1'
-  header_array[22].should == 'address2'
-  header_array[23].should == 'address3'
-  header_array[24].should == 'address4'
-  header_array[25].should == 'address5'
-  header_array[26].should == 'address6'
-  header_array[27].should == 'eol_ind'
+  header_array[7].should == 'cleared'
+  header_array[8].should == 'payee'
+  header_array[9].should == 'category'
+  header_array[10].should == 'memo'
+  header_array[11].should == 'split1_amount'
+  header_array[12].should == 'split1_category'
+  header_array[13].should == 'split1_memo'
+  header_array[14].should == 'split2_amount'
+  header_array[15].should == 'split2_category'
+  header_array[16].should == 'split2_memo'
+  header_array[17].should == 'split3_amount'
+  header_array[18].should == 'split3_category'
+  header_array[19].should == 'split3_memo'
+  header_array[20].should == 'address1'
+  header_array[21].should == 'address2'
+  header_array[22].should == 'address3'
+  header_array[23].should == 'address4'
+  header_array[24].should == 'address5'
+  header_array[25].should == 'address6'
+  header_array[26].should == 'eol_ind'
 end
 
 def as_lines(s)

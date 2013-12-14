@@ -67,58 +67,26 @@ describe "Qiflib::Util" do
     array[4].should == '2002-05-04' # date
     array[5].should == '-100.00' # amount
     array[6].should == '' # number
-    array[7].should == '' # ibank_n
-    array[8].should == 'X' # cleared
-    array[9].should == "Zapata's Cantina" # payee
-    array[10].should == '550 dining out' # category
-    array[11].should == 'with Karen & Gary' # memo
-    array[12].should == '0.0' # split1_amount
-    array[13].should == '' # split1_category
-    array[14].should == '' # split1_memo
-    array[15].should == '0.0' # split2_amount
-    array[16].should == '' # split2_category
-    array[17].should == '' # split2_memo
-    array[18].should == '0.0' # split3_amount
-    array[19].should == '' # split3_category
-    array[20].should == '' # split3_memo
-    array[21].should == '' # address1
-    array[22].should == '' # address2
-    array[23].should == '' # address3
-    array[24].should == '' # address4
-    array[25].should == '' # address5
-    array[26].should == '' # address6
-    array[27].should == 'x' # eol_ind
-
-    # Qiflib::Util::describe_csv_field_array(last_tran_array)
-    array = last_tran_array
-    array[0].should == '10202' # id
-    array[1].should == 'chris' # acct_owner
-    array[2].should == 'wachovia checking' # acct_name
-    array[3].should == 'bank' # acct_type
-    array[4].should == '2013-12-05' # date
-    array[5].should == '-85.00' # amount
-    array[6].should == '5209' # number
-    array[7].should == '5209' # ibank_n
-    array[8].should == '' # cleared
-    array[9].should == 'Duke Energy' # payee
-    array[10].should == '120 electric' # category
-    array[11].should == '81.59 due 12/9' # memo
-    array[12].should == '0.0' # split1_amount
-    array[13].should == '' # split1_category
-    array[14].should == '' # split1_memo
-    array[15].should == '0.0' # split2_amount
-    array[16].should == '' # split2_category
-    array[17].should == '' # split2_memo
-    array[18].should == '0.0' # split3_amount
-    array[19].should == '' # split3_category
-    array[20].should == '' # split3_memo
-    array[21].should == '' # address1
-    array[22].should == '' # address2
-    array[23].should == '' # address3
-    array[24].should == '' # address4
-    array[25].should == '' # address5
-    array[26].should == '' # address6
-    array[27].should == 'x' # eol_ind
+    array[7].should == 'X' # cleared
+    array[8].should == "Zapata's Cantina" # payee
+    array[9].should == '550 dining out' # category
+    array[10].should == 'with Karen & Gary' # memo
+    array[11].should == '0.0' # split1_amount
+    array[12].should == '' # split1_category
+    array[13].should == '' # split1_memo
+    array[14].should == '0.0' # split2_amount
+    array[15].should == '' # split2_category
+    array[16].should == '' # split2_memo
+    array[17].should == '0.0' # split3_amount
+    array[18].should == '' # split3_category
+    array[19].should == '' # split3_memo
+    array[20].should == '' # address1
+    array[21].should == '' # address2
+    array[22].should == '' # address3
+    array[23].should == '' # address4
+    array[24].should == '' # address5
+    array[25].should == '' # address6
+    array[26].should == 'x' # eol_ind
   end
 
   it "should implement method 'transactions_to_delim', for ibank files" do
@@ -140,6 +108,7 @@ describe "Qiflib::Util" do
     first_tran_array = delim_in[0].strip.split('^')
     last_tran_array  = delim_in[-6].strip.split('^')
 
+    # Qiflib::Util::describe_csv_field_array(first_tran_array)
     array = first_tran_array
     array[0].should == '1' # id
     array[1].should == 'chris' # acct_owner
@@ -148,27 +117,26 @@ describe "Qiflib::Util" do
     array[4].should == '2002-05-04' # date
     array[5].should == '-100.00' # amount
     array[6].should == '' # number
-    array[7].should == '' # ibank_n
-    array[8].should == 'X' # cleared
-    array[9].should == "Zapata's Cantina" # payee
-    array[10].should == '550 dining out' # category
-    array[11].should == 'with Karen & Gary' # memo
-    array[12].should == '0.0' # split1_amount
-    array[13].should == '' # split1_category
-    array[14].should == '' # split1_memo
-    array[15].should == '0.0' # split2_amount
-    array[16].should == '' # split2_category
-    array[17].should == '' # split2_memo
-    array[18].should == '0.0' # split3_amount
-    array[19].should == '' # split3_category
-    array[20].should == '' # split3_memo
-    array[21].should == '' # address1
-    array[22].should == '' # address2
-    array[23].should == '' # address3
-    array[24].should == '' # address4
-    array[25].should == '' # address5
-    array[26].should == '' # address6
-    array[27].should == 'x' # eol_ind
+    array[7].should == 'X' # cleared
+    array[8].should == "Zapata's Cantina" # payee
+    array[9].should == '550 dining out' # category
+    array[10].should == 'with Karen & Gary' # memo
+    array[11].should == '0.0' # split1_amount
+    array[12].should == '' # split1_category
+    array[13].should == '' # split1_memo
+    array[14].should == '0.0' # split2_amount
+    array[15].should == '' # split2_category
+    array[16].should == '' # split2_memo
+    array[17].should == '0.0' # split3_amount
+    array[18].should == '' # split3_category
+    array[19].should == '' # split3_memo
+    array[20].should == '' # address1
+    array[21].should == '' # address2
+    array[22].should == '' # address3
+    array[23].should == '' # address4
+    array[24].should == '' # address5
+    array[25].should == '' # address6
+    array[26].should == 'x' # eol_ind
 
     # Qiflib::Util::describe_csv_field_array(last_tran_array)
     array = last_tran_array
@@ -179,27 +147,26 @@ describe "Qiflib::Util" do
     array[4].should == '2013-12-05' # date
     array[5].should == '-85.00' # amount
     array[6].should == '5209' # number
-    array[7].should == '5209' # ibank_n
-    array[8].should == '' # cleared
-    array[9].should == 'Duke Energy' # payee
-    array[10].should == '120 electric' # category
-    array[11].should == '81.59 due 12/9' # memo
-    array[12].should == '0.0' # split1_amount
-    array[13].should == '' # split1_category
-    array[14].should == '' # split1_memo
-    array[15].should == '0.0' # split2_amount
-    array[16].should == '' # split2_category
-    array[17].should == '' # split2_memo
-    array[18].should == '0.0' # split3_amount
-    array[19].should == '' # split3_category
-    array[20].should == '' # split3_memo
-    array[21].should == '' # address1
-    array[22].should == '' # address2
-    array[23].should == '' # address3
-    array[24].should == '' # address4
-    array[25].should == '' # address5
-    array[26].should == '' # address6
-    array[27].should == 'x' # eol_ind
+    array[7].should == '' # cleared
+    array[8].should == 'Duke Energy' # payee
+    array[9].should == '120 electric' # category
+    array[10].should == '81.59 due 12/9' # memo
+    array[11].should == '0.0' # split1_amount
+    array[12].should == '' # split1_category
+    array[13].should == '' # split1_memo
+    array[14].should == '0.0' # split2_amount
+    array[15].should == '' # split2_category
+    array[16].should == '' # split2_memo
+    array[17].should == '0.0' # split3_amount
+    array[18].should == '' # split3_category
+    array[19].should == '' # split3_memo
+    array[20].should == '' # address1
+    array[21].should == '' # address2
+    array[22].should == '' # address3
+    array[23].should == '' # address4
+    array[24].should == '' # address5
+    array[25].should == '' # address6
+    array[26].should == 'x' # eol_ind
   end
 
   it "should implement method 'catetory_names_to_csv', for ibank files" do
@@ -251,14 +218,14 @@ describe "Qiflib::Util" do
     ddl_filename = test_ddl_filename
     ddl_lines = Qiflib::Util.generate_sqlite_ddl
     write_lines(ddl_filename, ddl_lines, true)
-    ddl_lines.size.should == 45
+    ddl_lines.size.should == 44
     ddl_in = IO.readlines(ddl_filename)
-    ddl_in.size.should == 45
+    ddl_in.size.should == 44
 
     ddl_in[1].strip.should  == 'drop table if exists transactions;'
     ddl_in[2].strip.should  == 'drop table if exists categories;'
     ddl_in[4].strip.should  == 'create table transactions('
-    ddl_in[42].strip.should == '.import private/qiflib_transactions.txt transactions'
+    ddl_in[41].strip.should == '.import private/qiflib_transactions.txt transactions'
   end
 
   it "should implement method 'generate_sqlite_load_script'" do
