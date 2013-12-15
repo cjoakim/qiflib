@@ -13,11 +13,11 @@ require 'spec_helper'
 describe "Qiflib module constants" do
 
   it "should have the correct VERSION" do
-    Qiflib::VERSION.should == '0.5.0'
+    Qiflib::VERSION.should == '0.6.0'
   end
 
   it "should have the correct DATE" do
-    Qiflib::DATE.should == '2013-12-14'
+    Qiflib::DATE.should == '2013-12-15'
   end
 
   it "should have the correct AUTHOR" do
@@ -43,7 +43,7 @@ describe "Qiflib module constants" do
 
   it "should implement the method 'csv_transaction_field_map'" do
     hash = Qiflib::csv_transaction_field_map
-    hash.size.should == 27
+    hash.size.should == 28
     hash[0].should == 'id'
     hash[1].should == 'acct_owner'
     hash[2].should == 'acct_name'
@@ -70,7 +70,8 @@ describe "Qiflib module constants" do
     hash[23].should == 'address4'
     hash[24].should == 'address5'
     hash[25].should == 'address6'
-    hash[26].should == 'eol_ind'
+    hash[26].should == 'end_balance'
+    hash[27].should == 'eol_ind'
   end
 
 

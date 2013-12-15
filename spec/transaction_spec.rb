@@ -86,7 +86,8 @@ describe "Qiflib::Transaction" do
     array[23].should == '' # address4
     array[24].should == '' # address5
     array[25].should == '' # address6
-    array[26].should == 'x' # eol_ind
+    array[26].should == '' # balance
+    array[27].should == 'x' # eol_ind
   end
 
 
@@ -122,7 +123,8 @@ describe "Qiflib::Transaction" do
     array[23].should == '' # address4
     array[24].should == '' # address5
     array[25].should == '' # address6
-    array[26].should == 'x' # eol_ind
+    array[26].should == '' # balance
+    array[27].should == 'x' # eol_ind
   end
 
 end

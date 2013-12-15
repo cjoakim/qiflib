@@ -144,6 +144,7 @@ module Qiflib
       lines << '  address4         varchar(80),'
       lines << '  address5         varchar(80),'
       lines << '  address6         varchar(80),'
+      lines << '  end_balance      varchar(80),'
       lines << '  eol_ind          char(1)'
       lines << ');'
       lines << ''
@@ -205,6 +206,8 @@ module Qiflib
               elsif stripped.match(/^T/)
                 acct_type = line_value(stripped)
                 current_tran.acct_type = acct_type
+              elsif stripped.match(/^B/)
+                current_tran.balance = parse_balance(stripped)
               elsif stripped == '^'
                 in_acct_header = false
               end
@@ -233,6 +236,20 @@ module Qiflib
     def self.line_value(s)
       return '' if s.nil? || s.size < 1
       s[1, s.size].strip
+    end
+
+    def self.parse_balance(stripped)
+      lv = line_value(stripped)
+      if lv.size > 0
+        if lv.start_with?('(')
+          numeric = lv.tr('($,)','').strip
+          "-#{numeric}"
+        else
+          lv.tr('$,','').strip
+        end
+      else
+        ''
+      end
     end
 
   end

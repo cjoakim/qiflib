@@ -29,6 +29,7 @@ create table transactions(
   address4         varchar(80),
   address5         varchar(80),
   address6         varchar(80),
+  balance          varchar(80),
   eol_ind          char(1)
 );
 

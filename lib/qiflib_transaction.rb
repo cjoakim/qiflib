@@ -10,6 +10,7 @@ module Qiflib
     attr_accessor :acct_owner, :acct_name, :acct_type, :source_app # constructor arg fields
     attr_reader   :date, :amount, :cleared, :category, :number, :payee, :memo # data fields
     attr_reader   :splits, :address
+    attr_accessor :balance
 
     def self.csv_header
       CSV.generate do | csv |
@@ -23,7 +24,7 @@ module Qiflib
         @acct_name  = "#{acct_name}".downcase
         @acct_type  = "#{acct_type}".downcase
         @source_app = "#{source_app}".downcase
-        @id, @date, @amount, @cleared, @category, @number, @memo, @payee = 0, nil, nil, '', '', '', '', ''
+        @id, @date, @amount, @cleared, @category, @number, @memo, @payee, @balance = 0, nil, nil, '', '', '', '', '', ''
         @splits, @curr_split, @address = [], {}, []
       end
     end
@@ -128,6 +129,7 @@ module Qiflib
           array << ''
         end
       }
+      array << balance
       array << 'x'
       array
     end

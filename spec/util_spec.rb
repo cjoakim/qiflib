@@ -86,7 +86,7 @@ describe "Qiflib::Util" do
     array[23].should == '' # address4
     array[24].should == '' # address5
     array[25].should == '' # address6
-    array[26].should == 'x' # eol_ind
+    array[27].should == 'x' # eol_ind
   end
 
   it "should implement method 'transactions_to_delim', for ibank files" do
@@ -136,7 +136,7 @@ describe "Qiflib::Util" do
     array[23].should == '' # address4
     array[24].should == '' # address5
     array[25].should == '' # address6
-    array[26].should == 'x' # eol_ind
+    array[27].should == 'x' # eol_ind
 
     # Qiflib::Util::describe_csv_field_array(last_tran_array)
     array = last_tran_array
@@ -166,7 +166,7 @@ describe "Qiflib::Util" do
     array[23].should == '' # address4
     array[24].should == '' # address5
     array[25].should == '' # address6
-    array[26].should == 'x' # eol_ind
+    array[27].should == 'x' # eol_ind
   end
 
   it "should implement method 'catetory_names_to_csv', for ibank files" do
@@ -218,14 +218,14 @@ describe "Qiflib::Util" do
     ddl_filename = test_ddl_filename
     ddl_lines = Qiflib::Util.generate_sqlite_ddl
     write_lines(ddl_filename, ddl_lines, true)
-    ddl_lines.size.should == 44
+    ddl_lines.size.should == 45
     ddl_in = IO.readlines(ddl_filename)
-    ddl_in.size.should == 44
+    ddl_in.size.should == 45
 
     ddl_in[1].strip.should  == 'drop table if exists transactions;'
     ddl_in[2].strip.should  == 'drop table if exists categories;'
     ddl_in[4].strip.should  == 'create table transactions('
-    ddl_in[41].strip.should == '.import private/qiflib_transactions.txt transactions'
+    ddl_in[42].strip.should == '.import private/qiflib_transactions.txt transactions'
   end
 
   it "should implement method 'generate_sqlite_load_script'" do

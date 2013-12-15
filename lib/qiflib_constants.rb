@@ -4,8 +4,8 @@
 
 module Qiflib
 
-  VERSION        = '0.5.0'
-  DATE           = '2013-12-14'
+  VERSION        = '0.6.0'
+  DATE           = '2013-12-15'
   AUTHOR         = 'Chris Joakim'
   EMAIL          = 'cjoakim@bellsouth.net'
   SOURCE_QUICKEN = 'quicken'
@@ -43,6 +43,7 @@ module Qiflib
       address4
       address5
       address6
+      end_balance
       eol_ind
     )
   end

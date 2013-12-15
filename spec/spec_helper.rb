@@ -86,7 +86,7 @@ def validate_category_header_fields(header_array)
 end
 
 def validate_transaction_header_fields(header_array)
-  header_array.size.should == 27
+  header_array.size.should == 28
   header_array[0].should == 'id'
   header_array[1].should == 'acct_owner'
   header_array[2].should == 'acct_name'
@@ -113,7 +113,8 @@ def validate_transaction_header_fields(header_array)
   header_array[23].should == 'address4'
   header_array[24].should == 'address5'
   header_array[25].should == 'address6'
-  header_array[26].should == 'eol_ind'
+  header_array[26].should == 'end_balance'
+  header_array[27].should == 'eol_ind'
 end
 
 def as_lines(s)
