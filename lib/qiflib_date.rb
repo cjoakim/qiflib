@@ -17,7 +17,11 @@ module Qiflib
         d   = tokens[1].to_i
         y   = tokens[2].to_i
         @yy = tokens[2]
-        y < 50 ? @cc = "20" : @cc = "19"
+        if (y < 100)
+          y < 50 ? @cc = "20" : @cc = "19"
+        else
+          @cc = ""
+        end
         m < 10 ? @mm = "0#{m}" : @mm = "#{m}"
         d < 10 ? @dd = "0#{d}" : @dd = "#{d}"
       end
