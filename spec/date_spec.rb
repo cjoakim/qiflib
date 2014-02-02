@@ -67,5 +67,15 @@ describe "Qiflib::Date" do
     date.to_s.should == '0000-00-00'
   end
   
+  it "should handle 4 digit years" do
+    date = Qiflib::Date.new('3/28/2012')
+    date.string_value.should == '3/28/2012'
+    date.yy.should == '2012'
+    date.mm.should == '03'
+    date.dd.should == '28' 
+    date.year.should == '2012'  
+    date.year_mm.should == '2012-03' 
+    date.to_s.should == '2012-03-28'
+  end
 end
  
